@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap_css/bootstrap.min.css">
+  
+    <!-- my own custom css -->
+    <link rel="stylesheet" type="text/css" href="/css/custom_style.css">
+      
+    <title>Rent or Exchange</title>
+    <link rel="icon" type="image/ico" href="/images/title_icon/title_icon.png" />
+
+    <!-- latest jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      body        { padding-top:80px; }
+    </style>
+  </head>
+
+  <body>
+
+           
+            <!--Navigation ba starts-->
+            <div id="nav-placeholder"> </div>
+            
+
+            <!-- including nav_bar using ejs -->
+            <% include include/nav_bar.ejs %>
+            <!--end of Navigation bar-->
+
+            
+             <!-- card starts -->
+             <div class="album py-5 bg-light">
+              <div class="container">
+              <div class="row">
+                <div class="col-md-8" >
+
+                  <!-- loading card content from server-->
+                <% for(let i=0;i<posts.length;i++){%>
+
+                    <div class="card mb-4 box-shadow flex-row flex-wrap">
+                        <div class="card-header border-0">
+                          <div class="img-same-size" style="background-image:url('<%= posts[i].post_images[0]%>');">
+                              </div>
+                                                      
+                        </div>
+                        <div class="card-block px-3">
+                            <% if (posts[i].rent_title) {%>
+                              <h4 class="card-title my-2"><%= posts[i].rent_title %></h4>
+                              <% } else if (posts[i].exchange_title) {%>
+                                <h4 class="card-title my-2"><%= posts[i].exchange_title %></h4>
+                            <% } %>
+                            <p class="h6"><%= posts[i].posted_by.name %></p>
+                            <p class="h6"><%= posts[i].created_at.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> at <%= posts[i].created_at.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
+                            <h4><span class="badge badge-pill badge-danger"><%= posts[i].post_type %></span></h4>
+                            <a href="/post_details/<%=posts[i]._id%>" class="btn btn-primary my-2">Details</a>
+                            
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="card-footer w-100 text-muted">
+                            <% if (posts[i].rent_category) {%>
+                              <a>Category: <%= posts[i].rent_category %></a>
+                            <%}else if (posts[i].exchange_category) {%>                            
+                              <a>Category: <%= posts[i].exchange_category %></a>
+                            <%}%> 
+
+                            <% if (posts[i].city_or_region) {%>
+                              <a class="float-right">Location: <%= posts[i].city_or_region %></a>
+                            <%}%> 
+                            
+                            
+                        </div>
+                    </div>
+                  <%}%>
+                    
+
+                </div>
+                
+                <div class="col-md-4">
+                    <p class="h4">Get Rent in Top Cities</p>
+                    <div class="list-group" id="list-tab" role="tablist">
+                      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="/login" role="tab" aria-controls="home">Dhaka</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Chattogram</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Sylhet</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Khulna</a>
+                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Barishal</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Rajshahi</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Rangpur</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Mymensingh</a>
+                      
+                    </div>
+
+                    <p class="h4 mt-4">Look Exchange in Top Cities</p>
+                    <div class="list-group" id="list-tab" role="tablist">
+                      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="/login" role="tab" aria-controls="home">Dhaka</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Chattogram</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Sylhet</a>
+                      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Khulna</a>
+                      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Barishal</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Rajshahi</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Rangpur</a>
+                      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Mymensingh</a>
+                      
+                    </div>
+
+                  </div>
+                
+              </div>
+             </div>
+          </div>
+            <!-- card ends -->
+          
+
+                               
+            <!-- adding footer using ejs -->
+            <!-- <%- include include/footer.ejs %> -->
+            <!-- end footer -->
+                  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="css/bootstrap_js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

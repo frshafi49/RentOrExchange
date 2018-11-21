@@ -1,0 +1,156 @@
+/*
+Template Name: My Profile
+Description: HTML5 / CSS3 One Page
+Version: 1.0
+Author: themehippo.com
+*/
+
+/*------------------------------------------------------------------
+# [Color codes]
+
+# Body  (text): #3a4750
+# Heading Color #444444
+# Theme Color (link color) #ff5722
+# Mid grey (sub header) #f4f4f4
+# -------------------------------------------------------------------*/
+
+/* ---------------------------------
+
+[Table of contents]
+
+1. Body
+2. header / .header
+3. My Activity / .item-stats
+4. Work History / .work-history-wrapper
+5. My Specialities / .expertise-wrapper
+6. Skills / .skills-wrapper
+7. Work Experiance / .section-experience
+8. Education / .section-education
+9. Marketplace Profile / .section-profile
+10. Portfolio / .portfolio-section
+11. Recent Reviews / .review-section
+12. Contact / .section-contact
+13. footer 
+
+------------------------------------*/
+
+
+/* --------------------------------------
+ * Global Typography
+ *------------------------------------------*/
+
+
+/*-------------------
+ * Section Wrapper
+ *-------------------*/
+.section-wrapper {
+    padding : 50px 0;
+    }
+
+@media (max-width : 768px) {
+    .section-wrapper {
+        padding : 20px 0;
+        }
+    }
+
+@media (max-width : 600px){
+    .section-wrapper {
+        padding : 20px;
+        }
+    }
+
+/*---------------------------
+ * Section Title
+ *---------------------------*/
+.section-title {
+    margin-right : 30px;
+    text-align   : right;
+    }
+
+.section-title h2 {
+    font-size      : 14px;
+    margin-bottom  : 5px;
+    color          : #bbbbbb;
+    text-transform : uppercase;
+    }
+
+@media (max-width: 768px) {
+    .section-title{
+        text-align: left;
+        }
+    .section-title h2{
+        font-size: 18px;
+        margin-bottom: 20px;
+        }
+    }
+
+/*-----------------------------
+ * NAVIGATION & HEADER STYLE
+ *-----------------------------*/
+
+.header {
+    padding    : 50px 0;
+    margin     : 0;
+    position   : relative;
+    border-top : 5px solid #ff5722;
+    }
+
+.header .profile-img {
+    margin-right : 30px;
+    }
+
+.header .name-wrapper {
+    margin-bottom : 30px;
+    }
+
+.header .name-wrapper h1 {
+    text-transform : uppercase;
+    line-height    : 1;
+    margin         : 0 0 5px;
+    }
+
+.header .name-wrapper span {
+    font-size : 24px;
+    color     : #ff5722;
+    }
+
+.header .personal-details {
+    margin : 10px 0;
+    }
+
+.header .personal-details strong {
+    font-size   : 13px;
+    color       : #444444;
+    display     : block;
+    line-height : 1;
+    }
+
+.header .personal-details small {
+    font-size : 12px;
+    }
+
+.header .personal-details span {
+    color : #989898;
+    }
+
+@media (max-width : 768px) {
+    .header {
+        padding    : 20px 0;
+        }
+
+    .header .profile-img {
+        margin: 0 0 30px;
+        }
+    }
+
+@media (max-width : 600px){
+    .header{
+        padding: 20px;
+        }
+    }
+
+.skill-spacing {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

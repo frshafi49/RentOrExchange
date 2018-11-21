@@ -1,0 +1,25 @@
+<div class="card-group col-md-3">
+                    <div class="card mb-4 box-shadow">
+                      <img class="card-img-top" src="<%= posts[i].post_images[0] %>" alt="Card image cap">
+                      <div class="card-body">
+                        <% if (posts[i].rent_title) {%>
+                        <h5 class="card-title"><%= posts[i].rent_title %></h5>
+                        <% } else if (posts[i].exchange_title) {%>
+                          <h5 class="card-title"><%= posts[i].exchange_title %></h5>
+                        <% } %>
+                        <% if (posts[i].rent_description) {%>
+                          <p class="card-text"><%= posts[i].rent_description %></p>                        
+                        <% } else if (posts[i].exchange_description) {%>
+                          <p class="card-text"><%= posts[i].exchange_description %></p>
+                        <% } %>                     
+                      </div>
+                      <div class="card-footer">
+                          <% if (posts[i].rent_category) {%>
+                            <small class="text-muted"><%= posts[i].rent_category %></small>
+                          <%}else if (posts[i].exchange_category) {%>
+                            <small class="text-muted"><%= posts[i].exchange_category %></small>
+                          <%}%>                          
+                         <a class="float-right" href="/details_post/<%=posts[i]._id%>" class="btn btn-primary">Continue reading</a>
+                      </div>
+                    </div>
+                  </div>

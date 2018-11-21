@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap_css/bootstrap.min.css">
+  
+    <!-- my own custom css -->
+    <link rel="stylesheet" type="text/css" href="/css/custom_style.css">
+      
+    <title>Rent or Exchange</title>
+    <link rel="icon" type="image/ico" href="/images/title_icon/title_icon.png" />
+
+    <!-- latest jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      body        { padding-top:80px; }
+    </style>
+  </head>
+
+  <body>
+
+           
+            <!--Navigation ba starts-->
+            <div id="nav-placeholder"> </div>
+            
+
+            <!-- including nav_bar using ejs -->
+            <% include include/nav_bar.ejs %>
+            <!--end of Navigation bar-->
+
+            
+             <!-- card starts -->
+             <div class="album py-5 bg-light">
+              <div class="container">
+              <div class="row">
+                <div class="col-md-12" >
+
+                    <div class="card mb-4 box-shadow flex-row flex-wrap">
+                        <div class="card-header border-0">
+                          <div class="img-same-size-in-details" style="background-image:url('<%= post.posted_by.profile_image%>');">
+                              </div>
+                                                      
+                        </div>
+                        <div class="card-block px-3 my-2">
+                            <% if (post.rent_title) {%>
+                              <h4 class="card-title my-2"><%= post.rent_title %></h4>
+                              <% } else if (post.exchange_title) {%>
+                                <h4 class="card-title my-2"><%= post.exchange_title %></h4>
+                            <% } %>
+                            <p class="h6"><%= post.posted_by.name %></p>
+                            <p class="h6"><%= post.created_at.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %> at <%= post.created_at.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) %></p>
+                            <h4><span class="badge badge-pill badge-danger"><%= post.post_type %></span></h4>
+                            
+                            
+                            <!-- loading all the image of the post -->
+                            <!-- as well as changeing column size based on post length -->
+                            <div class="row my-2">
+                                  <% for(let i=0;i<post.post_images.length;i++) {%>
+                                   
+                                   <% if( post.post_images.length == 2 ) {%>
+                                    <div class="col-md-6 my-2">            
+                                        <div class="img-same-size-bigger" style="background-image:url('<%= post.post_images[i]%>');"></div>
+                                     </div>
+                                   <% } else if(post.post_images.length == 3) {%>
+                                    <div class="col-md-4 my-2">            
+                                        <div class="img-same-size-bigger" style="background-image:url('<%= post.post_images[i]%>');"></div>
+                                    </div>
+                                    <% } else {%>
+                                      <div class="col-md-12 my-2">            
+                                          <div class="img-same-size-bigger" style="background-image:url('<%= post.post_images[i]%>');"></div>
+                                      </div>
+                                    <% } %> 
+                                <% } %> 
+                            </div>
+
+                            <!-- show rent or exchange description based on type -->
+                            <h5 class="card-title"> <strong>Description</strong> </h5>                           
+                            <% if (post.rent_description) {%>
+                              <p class="card-text"><%= post.rent_description %></p>
+                            <%}else if (post.exchange_description) {%>                            
+                              <p class="card-text"><%= post.exchange_description %></p>
+                            <%}%> 
+
+                            <!--show rent rent count duration if it is a rent post -->
+                            <% if (post.rent_count_duration) {%> 
+                              <h5 class="card-title"> <strong>Rent Count Duration</strong> </h5>               
+                              <p class="card-text"><span> <i class='far fa-bell' style='color:red'></i></span> <%= post.rent_count_duration %></p>
+                            <%}%> 
+
+                            <!-- show rent cost if it is a rent -->
+                            <% if (post.rent_cost) {%> 
+                              <h5 class="card-title"> <strong>Rent Cost</strong> </h5>               
+                              <p class="card-text"><span> <i class='fas fa-dollar-sign' style='color:red'></i></span> <%= post.rent_cost%></p>
+                            <%}%> 
+
+
+                            <!-- if post is exhange type show exchange with field -->
+                            <% if (post.exchange_with) {%>
+                              <h5 class="card-title"> <strong>Exchange with</strong> </h5> 
+                              <p class="card-text"><%= post.exchange_with %></p>   
+                            <%}%>
+
+                            <!-- Show contact number -->
+                            <h5 class="card-title"> <strong> Contact Number</strong></h5> 
+                            <% for(let i=0;i<post.mobile_no.length;i++) {%>
+                                
+                                <p class="card-text"><span> <i class='fas fa-phone' style='color:red'></i></span> <%= post.mobile_no[i] %></p>
+                            <%}%>
+
+                         </div> 
+                        <div class="w-100"></div>
+                        <div class="card-footer w-100 text-muted">
+                            <% if (post.rent_category) {%>
+                              <a>Category: <%= post.rent_category %></a>
+                            <%}else if (post.exchange_category) {%>                            
+                              <a>Category: <%= post.exchange_category %></a>
+                            <%}%> 
+
+                            <% if (post.city_or_region) {%>
+                              <a class="float-right">Location: <%= post.city_or_region %></a>
+                            <%}%> 
+                                                       
+                        </div>
+                    </div>
+                </div>            
+             </div>
+          </div>
+            <!-- card ends -->
+          
+
+                               
+            <!-- adding footer using ejs -->
+            <!-- <%- include include/footer.ejs %> -->
+            <!-- end footer -->
+                  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="css/bootstrap_js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

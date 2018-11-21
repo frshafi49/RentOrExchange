@@ -2,8 +2,8 @@ module.exports = {
 
     api_secret_key: {
        
-        'secret_key': 'sellorexchange_frshafi_secret_key',
-        'refreshTokenSecret': 'sellorexchange_frshafi_refresh_token_secret'
+        'secret_key': 'rentorexchange_frshafi_secret_key',
+        'refreshTokenSecret': 'rentorexchange_frshafi_refresh_token_secret'
     }
 };
 

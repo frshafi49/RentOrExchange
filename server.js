@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for session
-app.use(session({key: 'user_id',resave:false,saveUninitialized:true, secret: 'fozlerabbishafi' })); // session secret
+app.use(session({key: 'user_id',resave:false,saveUninitialized:true, secret: 'rentorexchange' })); // session secret
 
 
 // This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
@@ -56,6 +56,7 @@ app.use(express.static('public')); // static folder for direct use
 
 //load our routes
 require('.//app/routes/user_rout.js')(app); 
+require('.//app/routes/post_rout.js')(app); 
 
 
 // launch ======================================================================

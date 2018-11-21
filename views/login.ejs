@@ -1,0 +1,82 @@
+<!-- views/login.ejs -->
+<!doctype html>
+<html>
+<head>
+        <title>Rent or Exchange</title>
+        <link rel="icon" type="image/ico" href="/images/title_icon/title_icon.png" />
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> load bootstrap css -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap_css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+         <!-- load bootstrap css -->
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">load fontawesome -->
+    
+    <!-- my own custom css -->
+    <link rel="stylesheet" type="text/css" href="/css/custom_style.css">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+        body        { padding-top:80px; }
+    </style>
+</head>
+<body>
+
+
+      <!-- including nav_bar using ejs -->
+     <%- include include/nav_bar_without_login.ejs %> 
+
+<div class="container">
+   
+
+            <div class="col-sm-4 offset-sm-4  mt-sm-5 mb-sm-5 pt-sm-5 pb-sm-5">
+
+                    <h1><span class="fa fa-sign-in"></span> Login</h1>
+                
+                    <!-- show any messages that come back with authentication -->
+                    <% if (locals.messages) { %>
+                        <div class="alert alert-danger"><%= messages.msg %></div>
+                    <% } %>
+                
+                   
+                    <!-- LOGIN FORM -->
+                    <form action="/login" class="" method="post" >
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                
+                        <button type="submit" class="btn  btn-success btn-lg">Login</button>
+                    </form>
+                
+                    <hr>
+                
+                    <p>Need an account? <a href="/signup">Signup</a></p>
+                    <p>Or go <a href="/">home</a>.</p>
+                   
+                
+            </div>
+                
+        
+        
+
+
+
+
+</div>
+
+   <!-- loading footer using ejs include -->
+   <%- include include/footer.ejs %>
+
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="css/bootstrap_js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

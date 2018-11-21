@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap_css/bootstrap.min.css">
+  
+    <!-- my own custom css -->
+    <link rel="stylesheet" type="text/css" href="/css/custom_style.css">
+
+    <!-- image preview library css -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css">
+      
+    <title>Rent or Exchange</title>
+    <link rel="icon" type="image/ico" href="/images/title_icon/title_icon.png" />
+
+    <!-- latest jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <style>
+      body { padding-top:50px; }
+    </style>
+
+  </head>
+
+  <body>
+
+           
+            <!--Navigation ba starts-->
+            <div id="nav-placeholder"> </div>
+        
+
+            <!-- including nav_bar using ejs -->
+           
+            <% include include/nav_bar.ejs %>
+
+            <!--end of Navigation bar-->
+         
+      
+            <div class="col-sm-4 offset-sm-4  mt-sm-5 mb-sm-5 pt-sm-5 pb-sm-5">
+
+                <!-- show any messages that come back with authentication -->
+                <% if (locals.messages) { %>
+                    <div class="alert alert-danger"><%= messages.msg %></div>
+                <% } %>
+
+                    <div class="form-group">
+                            <label >Select Post Type</label>
+                            <select class="form-control" name="post_type" id="selectPostType">
+                                <option value="1">Rent</option>
+                                <option value="2">Exchange</option>                
+                            </select>
+                    </div> 
+
+
+                 <!-- Rent Post FORM starts -->
+                    <form action="/post" method="post" id="postFormRent" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                        <div class="form-group">
+                            <label>Rent Title</label> 
+                            <input type="text" class="form-control" name="rent_title" required>
+                            <div class="invalid-feedback">Title is needed</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label >Rent Count Duration</label>
+                                <select class="form-control" name="rent_count_duration">
+                                    <option>Daily</option>
+                                    <option>Weekly</option>
+                                    <option>Monthly</option>
+                                    <option>Per three months</option>
+                                    <option>Per six months</option>
+                                    <option>Yearly</option>
+                                    <option>Per use</option>
+                                </select>
+                        </div>
+
+                        <div class="form-group">
+                                <label>Rent Cost</label> 
+                                <input type="text" class="form-control" name="rent_cost" required>
+                                <small class="form-text text-muted">If rent count duration is <strong>per use</strong>, write rent cost <strong>'negotiable'</strong>  or similar like this </small>
+                                <div class="invalid-feedback">Rent cost is needed</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label >Rent Category</label>
+                                <select class="form-control" name="rent_category">
+                                    <option>Electronics</option>
+                                    <option>Vehicles</option>                
+                                    <option>Real Estate</option>                
+                                    <option>Furniture and Home Appliances</option>                
+                                    <option>Services</option>                
+                                    <option>Education</option>                
+                                    <option>IT-Solution</option>                
+                                    <option>Agriculture Products</option>                
+                                    <option>Business and Industry</option>                
+                                </select>
+                        </div> 
+
+                        <div class="form-group">
+                                <label>Rent Description</label> 
+                                <textarea class="form-control" name="rent_description" maxlength="200" required rows="3"></textarea>
+                                <small class="form-text text-muted">Write rent description within 200 characters</small>
+                                <div class="invalid-feedback">Rent description is needed</div>
+                        </div>
+            
+                        <div class="form-row">
+                            <div class="col-md-6">
+                            <label> Contact Mobile 1</label>    
+                            <input type="text" class="form-control" name="mobile" placeholder="+8801xxxxxxxxx" required>
+                            <div class="invalid-feedback">Mobile 1 is needed</div>
+                            </div>
+                            <div class="col-md-6">
+                            <label>Contact Mobile 2</label>    
+                            <input type="text" class="form-control" name="mobile" placeholder="+8801xxxxxxxxx" required>
+                            <div class="invalid-feedback">Mobile 2 is needed</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>City or Region</label>
+                            <input type="text" class="form-control" name="city_or_region" required>
+                            <div class="invalid-feedback">City or region is needed</div>
+                        </div>
+
+                        <div class="form-group">
+                                <div class="custom-file-container" data-upload-id="myUniqueUploadId">
+                                        <label>Add Images (Maximum three images) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
+                             
+                                        <label class="custom-file-container__custom-file" >
+                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/x-png,image/gif,image/jpeg" name="images"  multiple>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                        </label>
+                                        <div class="custom-file-container__image-preview"></div>
+                                </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg mb-2">Post Rent</button>
+
+                    </form>
+                    <!-- Rent Post FORM ends -->
+
+                    <!-- Exchange Post FORM starts -->
+                    <form action="/post" method="post" id="postFormExchange" enctype="multipart/form-data"  class="needs-validation" novalidate style="display:none;">
+
+                        <div class="form-group">
+                            <label>Exchange Title</label> 
+                            <input type="text" class="form-control" name="exchange_title" required>
+                            <div class="invalid-feedback">Title is needed</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label >Exchange Category</label>
+                                <select class="form-control" name="exchange_category">
+                                    <option>Electronics</option>
+                                    <option>Vehicles</option>                
+                                    <option>Real Estate</option>                
+                                    <option>Furniture and Home Appliances</option>                
+                                    <option>Services</option>                
+                                    <option>Education</option>                
+                                    <option>IT-Solution</option>                
+                                    <option>Agriculture Products</option>                
+                                    <option>Business and Industry</option>                
+                                </select>
+                        </div> 
+
+                        <div class="form-group">
+                            <label>Exchange Description</label> 
+                            <textarea class="form-control" name="exchange_description" maxlength="200" required rows="3"></textarea>
+                            <small class="form-text text-muted">Write Exchange description within 200 characters</small>
+                            <div class="invalid-feedback">Exchange Description is needed</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label>Exchange With</label> 
+                                <textarea class="form-control" name="exchange_with" maxlength="150" required rows="3"></textarea>
+                                <small class="form-text text-muted">To which things you want to exchange your product, write within 150 words</small>
+                                <div class="invalid-feedback">Exchange with is needed</div>
+                            </div>
+            
+                        <div class="form-row">
+                            <div class="col-md-6">
+                            <label> Contact Mobile 1</label>    
+                            <input type="text" class="form-control" name="mobile" placeholder="+8801xxxxxxxxx" required>
+                            <div class="invalid-feedback">Mobile 1 is needed</div>
+                            </div>
+                            <div class="col-md-6">
+                            <label>Contact Mobile 2</label>    
+                            <input type="text" class="form-control" name="mobile" placeholder="+8801xxxxxxxxx" required>
+                            <div class="invalid-feedback">Mobile 1 is needed</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>City or Region</label>
+                            <input type="text" class="form-control" name="city_or_region" required>
+                            <div class="invalid-feedback">City or region is needed</div>
+                        </div>
+
+                        <div class="form-group">
+                                <div class="custom-file-container" data-upload-id="myUniqueUploadId2">
+                                        <label>Add Images (Maximum three images) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
+                             
+                                        <label class="custom-file-container__custom-file" >
+                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/x-png,image/gif,image/jpeg" name="images"  multiple>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                        </label>
+                                        <div class="custom-file-container__image-preview"></div>
+                                </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success btn-lg mb-2">Post Exchange</button>
+                    </form>
+                    <!-- Exchange Post FORM ends -->
+            
+        </div>
+
+
+
+
+                               
+    <!-- adding footer using ejs -->
+    <!-- <%- include include/footer.ejs %> -->
+    <!-- end footer -->
+
+
+    <!-- sript for controlling two type of user post fields starts -->
+    <script>
+        function myFunction() {
+            var postFormRent = document.getElementById("postFormRent");
+            var postFormExchange = document.getElementById("postFormExchange");
+            var selectPostType =  document.getElementById("selectPostType");
+            var slectedValue = selectPostType.options[selectPostType.selectedIndex].value;
+           
+            if (slectedValue === "1") {
+                postFormRent.style.display = "block";
+                postFormExchange.style.display = "none";
+            } else {
+                postFormRent.style.display = "none";
+                postFormExchange.style.display = "block";
+            }
+        }
+
+     document.getElementById("selectPostType").onchange = function() {
+     myFunction();
+     return false
+    };
+    </script>
+    <!-- sript for controlling two type of user post fields ends -->
+
+
+    <!-- below script will validate form requiredd fields -->
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+            }, false);
+        });
+        }, false);
+    })();
+    </script>
+    <!-- Ends form validation script -->
+    
+
+    <!-- scripts for photo upload library starts -->
+    <script src="https://unpkg.com/file-upload-with-preview"></script> 
+    <script>
+        var upload = new FileUploadWithPreview('myUniqueUploadId')
+        var upload = new FileUploadWithPreview('myUniqueUploadId2')
+    </script>
+    <!-- scripts for photo upload library ends -->
+
+
+                  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="css/bootstrap_js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
